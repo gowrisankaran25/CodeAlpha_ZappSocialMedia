@@ -7,28 +7,6 @@ A full-stack social media application built with **Express.js**, **MongoDB**, an
 ---
 
 ## 🗂 Project Structure
-socialmedia/
-├── backend/
-│   ├── models/
-│   │   ├── User.js        # User schema (auth, followers, profile)
-│   │   ├── Post.js        # Post schema (content, likes)
-│   │   ├── Comment.js     # Comment schema (nested likes)
-│   │   └── Follower.js    # Follow relationship schema
-│   ├── routes/
-│   │   ├── auth.js        # Register, Login, /me
-│   │   ├── users.js       # Profiles, follow/unfollow, search
-│   │   └── posts.js       # CRUD posts, likes, comments
-│   ├── middleware/
-│   │   └── auth.js        # JWT middleware
-│   ├── server.js          # Express app entry point
-│   ├── package.json
-│   └── .env.example       # Copy to .env and fill in values
-└── frontend/
-    ├── index.html
-    ├── css/style.css
-    └── js/
-        ├── api.js         # API helper (fetch wrapper)
-        └── app.js         # Full UI logic
 
 
 The project is organized into `backend/` and `frontend/` directories with the following structure:

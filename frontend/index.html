@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zapp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="auth-screen" class="screen active">
+
+    <canvas id="auth-canvas"></canvas>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="auth-preview">
+      <div class="preview-phone">
+        <div class="preview-phone-inner">
+          <div class="preview-screen">
+            <div class="preview-story-bar">
+              <div class="preview-story ps1"></div>
+              <div class="preview-story ps2"></div>
+              <div class="preview-story ps3"></div>
+              <div class="preview-story ps4"></div>
+            </div>
+            <div class="preview-post">
+              <div class="preview-post-header">
+                <div class="preview-mini-avatar pa1"></div>
+                <div class="preview-post-meta">
+                  <div class="preview-line pw60"></div>
+                  <div class="preview-line pw40"></div>
+                </div>
+              </div>
+              <div class="preview-post-img pi1"></div>
+              <div class="preview-post-actions">
+                <span>❤️</span><span>💬</span><span>📤</span>
+              </div>
+            </div>
+            <div class="preview-reel">
+              <div class="preview-reel-thumb pr1"></div>
+              <div class="preview-reel-thumb pr2"></div>
+              <div class="preview-reel-thumb pr3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="preview-features">
+        <div class="pf-item pf-active" data-index="0">⚡ Instant posts &amp; reels</div>
+        <div class="pf-item" data-index="1">🎬 Short video stories</div>
+        <div class="pf-item" data-index="2">💬 Real-time DMs</div>
+        <div class="pf-item" data-index="3">🔥 Trending discovery</div>
+        <div class="pf-item" data-index="4">📊 Live polls &amp; reactions</div>
+      </div>
+    </div>
+
+    <div class="auth-container">
+      <div class="auth-brand">
+        <div class="brand-icon" id="brand-icon-anim">⚡</div>
+        <h1 class="brand-name">Zapp</h1>
+        <p class="brand-tagline">Share your moment. Feel the vibe.</p>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Sign In</button>
+          <button class="auth-tab" data-tab="register">Sign Up</button>
+        </div>
+
+        <div id="login-form" class="auth-form active">
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="login-email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="login-password" placeholder="••••••••" />
+              <button class="pw-toggle" data-target="login-password">👁</button>
+            </div>
+          </div>
+          <div id="login-error" class="form-error hidden"></div>
+          <button class="btn btn-primary btn-full btn-glow" id="login-btn">
+            <span class="btn-text">Sign In</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+          <div class="auth-divider"><span>or continue with</span></div>
+          <div class="social-auth-row">
+            <button class="social-btn" id="google-auth-btn">
+              <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.96 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+              Google
+            </button>
+            <button class="social-btn" id="github-auth-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.85 1.24 1.85 1.24 1.07 1.83 2.81 1.3 3.5.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0 1 12 6.8c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </button>
+          </div>
+        </div>
+
+        <div id="register-form" class="auth-form">
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-wrap">
+              <span class="input-icon">@</span>
+              <input type="text" id="reg-username" placeholder="cooluser123" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Display Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">✨</span>
+              <input type="text" id="reg-displayname" placeholder="Your Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="reg-email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="reg-password" placeholder="Min 6 characters" />
+              <button class="pw-toggle" data-target="reg-password">👁</button>
+            </div>
+          </div>
+          <div class="pw-strength-wrap">
+            <div class="pw-strength-bar">
+              <div class="pw-strength-fill" id="pw-strength-fill"></div>
+            </div>
+            <span class="pw-strength-label" id="pw-strength-label"></span>
+          </div>
+          <div id="reg-error" class="form-error hidden"></div>
+          <button class="btn btn-primary btn-full btn-glow" id="register-btn">
+            <span class="btn-text">Create Account</span>
+            <span class="btn-loader hidden">⏳</span>
+          </button>
+          <p class="auth-terms">By signing up you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a></p>
+        </div>
+      </div>
+
+      <div id="login-details-display" class="hidden" style="margin-top: 24px; padding: 20px; background: var(--bg-2); border: 1px solid var(--accent); border-radius: var(--radius); width: 100%; max-width: 420px; text-align: center; animation: auth-card-in 0.4s ease both;">
+        <h3 style="color: var(--accent); margin-bottom: 12px; font-family: var(--font-display);">Login Successful! ⚡</h3>
+        <div id="logged-user-info" style="color: var(--text); font-size: 14px; line-height: 1.6; margin-bottom: 16px; background: var(--bg-3); padding: 12px; border-radius: var(--radius-sm); text-align: left;">
+          </div>
+        <button class="btn btn-primary btn-full btn-glow" id="proceed-to-app-btn">
+          <span class="btn-text">Enter Zapp</span>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="app-screen" class="screen">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon-sm">⚡</span>
+        <span class="brand-text">Zapp</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="feed">
+          <span class="nav-icon">🏠</span><span>Home</span>
+        </button>
+        <button class="nav-item" data-view="explore">
+          <span class="nav-icon">🔍</span><span>Explore</span>
+        </button>
+        <button class="nav-item" data-view="reels">
+          <span class="nav-icon">🎬</span><span>Reels</span>
+        </button>
+        <button class="nav-item" data-view="notifications">
+          <span class="nav-icon">🔔</span><span>Notifications</span>
+          <span class="notif-badge hidden" id="notif-badge"></span>
+        </button>
+        <button class="nav-item" data-view="messages">
+          <span class="nav-icon">✉️</span><span>Messages</span>
+          <span class="notif-badge hidden" id="msg-badge"></span>
+        </button>
+        <button class="nav-item" data-view="saved">
+          <span class="nav-icon">🔖</span><span>Saved</span>
+        </button>
+        <button class="nav-item" data-view="profile">
+          <span class="nav-icon">👤</span><span>Profile</span>
+        </button>
+      </nav>
+
+      <button class="sidebar-create-btn" id="sidebar-create-btn">
+        <span>＋</span> Create
+      </button>
+
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sidebar-avatar"></div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-display-name" id="sidebar-name"></div>
+          <div class="sidebar-username" id="sidebar-username"></div>
+        </div>
+        <button class="logout-btn" id="logout-btn" title="Logout">↩</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <div id="feed-view" class="view active">
+        <div class="view-header">
+          <h2>Home Feed</h2>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" id="refresh-feed-btn" title="Refresh">↻</button>
+          </div>
+        </div>
+
+        <div class="stories-bar" id="stories-bar">
+          <div class="story-add" id="story-add-btn">
+            <div class="story-add-avatar" id="story-add-avatar"></div>
+            <div class="story-label">Your Story</div>
+          </div>
+          <div id="stories-list" class="stories-list"></div>
+        </div>
+
+        <div class="compose-card">
+          <div class="compose-avatar" id="compose-avatar"></div>
+          <div class="compose-body">
+            <textarea id="post-content" placeholder="What's on your mind?" maxlength="500"></textarea>
+
+            <div id="compose-image-preview" class="compose-image-preview hidden">
+              <img id="compose-preview-img" src="" alt="" />
+              <button class="compose-remove-img" id="remove-img-btn">✕</button>
+            </div>
+            <div id="compose-video-preview" class="compose-video-preview hidden">
+              <video id="compose-preview-video" controls></video>
+              <button class="compose-remove-img" id="remove-video-btn">✕</button>
+            </div>
+
+            <div class="compose-footer">
+              <div class="compose-actions-left">
+                <label class="compose-icon-btn" title="Add image" for="post-image-input">🖼️</label>
+                <input type="file" id="post-image-input" accept="image/*" style="display:none" />
+                <label class="compose-icon-btn" title="Add video" for="post-video-input">🎬</label>
+                <input type="file" id="post-video-input" accept="video/mp4,video/webm,video/mov,video/*" style="display:none" />
+                <button class="compose-icon-btn" id="post-gif-btn" title="Add GIF">GIF</button>
+                <button class="compose-icon-btn" id="post-emoji-btn" title="Emoji">😊</button>
+                <button class="compose-icon-btn" id="post-location-btn" title="Location">📍</button>
+                <button class="compose-icon-btn" id="post-poll-btn" title="Poll">📊</button>
+              </div>
+              <div class="compose-actions-right">
+                <span class="char-count" id="char-count">500</span>
+                <div class="char-ring-wrap"><svg class="char-ring" viewBox="0 0 36 36"><circle class="char-ring-bg" cx="18" cy="18" r="15"/><circle class="char-ring-fill" id="char-ring-fill" cx="18" cy="18" r="15" stroke-dasharray="0 94"/></svg></div>
+                <button class="btn btn-primary btn-sm" id="post-btn">Post</button>
+              </div>
+            </div>
+
+            <div id="poll-composer" class="poll-composer hidden">
+              <input class="poll-option-input" id="poll-opt-1" placeholder="Option 1" maxlength="80" />
+              <input class="poll-option-input" id="poll-opt-2" placeholder="Option 2" maxlength="80" />
+              <input class="poll-option-input" id="poll-opt-3" placeholder="Option 3 (optional)" maxlength="80" />
+              <select id="poll-duration" class="poll-duration-select">
+                <option value="1">1 day</option>
+                <option value="3" selected>3 days</option>
+                <option value="7">7 days</option>
+              </select>
+            </div>
+
+            <div id="emoji-picker" class="emoji-picker hidden">
+              <div class="emoji-grid" id="emoji-grid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="feed-posts" class="posts-list">
+          <div class="loading">Loading your feed...</div>
+        </div>
+      </div>
+
+      <div id="explore-view" class="view">
+        <div class="view-header">
+          <h2>Explore</h2>
+          <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search people, posts, tags..." />
+            <button class="btn btn-outline btn-sm" id="search-btn">Search</button>
+          </div>
+        </div>
+        <div id="search-results" class="search-results hidden"></div>
+        <div class="explore-toggle">
+          <button class="explore-toggle-btn active" id="grid-toggle">⊞ Grid</button>
+          <button class="explore-toggle-btn" id="list-toggle">☰ List</button>
+        </div>
+        <div id="explore-posts" class="posts-list">
+          <div class="loading">Loading...</div>
+        </div>
+      </div>
+
+      <div id="reels-view" class="view">
+        <div class="view-header">
+          <h2>Reels</h2>
+          <button class="btn btn-primary btn-sm" id="upload-reel-btn">＋ Upload Reel</button>
+        </div>
+        <div id="reels-container" class="reels-container">
+          <div class="loading">Loading reels...</div>
+        </div>
+      </div>
+
+      <div id="notifications-view" class="view">
+        <div class="view-header"><h2>Notifications</h2>
+          <button class="btn btn-ghost btn-sm" id="mark-all-read-btn">Mark all read</button>
+        </div>
+        <div id="notifications-list" class="notifications-list">
+          <div class="empty-state">
+            <div class="empty-state-icon">🔔</div>
+            <h3>No notifications yet</h3>
+            <p>When someone likes or comments on your posts, you'll see it here</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="messages-view" class="view">
+        <div class="messages-layout">
+          <div class="conversations-pane" id="conversations-pane">
+            <div class="view-header" style="position:relative;border-radius:0">
+              <h2>Messages</h2>
+              <button class="btn btn-outline btn-sm" id="new-dm-btn">＋ New</button>
+            </div>
+            <div id="conversations-list"></div>
+          </div>
+          <div class="chat-pane" id="chat-pane">
+            <div class="chat-empty-state">
+              <div style="font-size:48px">✉️</div>
+              <h3>Your Messages</h3>
+              <p>Select a conversation or start a new one</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="saved-view" class="view">
+        <div class="view-header"><h2>Saved Posts</h2></div>
+        <div id="saved-posts" class="posts-list">
+          <div class="empty-state">
+            <div class="empty-state-icon">🔖</div>
+            <h3>No saved posts yet</h3>
+            <p>Bookmark posts to see them here</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="profile-view" class="view">
+        <div id="profile-content"></div>
+      </div>
+
+    </main>
+
+    <aside class="right-sidebar">
+      <div class="suggestions-card">
+        <h3>People to Follow</h3>
+        <div id="suggestions-list">
+          <div class="loading-sm">Loading...</div>
+        </div>
+      </div>
+      <div class="trending-card" id="trending-topics-card">
+        <h3>Trending Topics</h3>
+        <div id="trending-topics-list" class="trending-topics-list"></div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="story-modal" class="modal hidden">
+    <div class="modal-overlay" id="story-modal-overlay"></div>
+    <div class="story-viewer">
+      <div class="story-progress-bars" id="story-progress-bars"></div>
+      <div class="story-header-info">
+        <div class="story-viewer-avatar" id="story-viewer-avatar"></div>
+        <div class="story-viewer-name" id="story-viewer-name"></div>
+        <div class="story-viewer-time" id="story-viewer-time"></div>
+        <button class="story-close-btn" id="story-close-btn">✕</button>
+      </div>
+      <div class="story-content-area" id="story-content-area"></div>
+      <button class="story-nav-btn story-prev" id="story-prev-btn">‹</button>
+      <button class="story-nav-btn story-next" id="story-next-btn">›</button>
+    </div>
+  </div>
+
+  <div id="story-creator-modal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-box" style="max-width:420px">
+      <div class="modal-header">
+        <h3>Add Story</h3>
+        <button class="modal-close" id="story-creator-close">✕</button>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div class="story-type-tabs">
+          <button class="story-type-tab active" data-type="text">✏️ Text</button>
+          <button class="story-type-tab" data-type="image">🖼️ Image</button>
+          <button class="story-type-tab" data-type="video">🎬 Video</button>
+        </div>
+        <div id="story-text-input-wrap">
+          <textarea id="story-text-input" placeholder="What's your story?" maxlength="200" style="width:100%;height:100px;background:var(--bg-3);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-size:15px;resize:none;outline:none;font-family:var(--font-body)"></textarea>
+          <div class="story-bg-picker">
+            <span style="font-size:12px;color:var(--text-2);margin-right:8px">Background:</span>
+            <button class="story-bg-opt active" data-bg="linear-gradient(135deg,#7c5cfc,#fc5c7d)" style="background:linear-gradient(135deg,#7c5cfc,#fc5c7d)"></button>
+            <button class="story-bg-opt" data-bg="linear-gradient(135deg,#4ade80,#06b6d4)" style="background:linear-gradient(135deg,#4ade80,#06b6d4)"></button>
+            <button class="story-bg-opt" data-bg="linear-gradient(135deg,#f59e0b,#ef4444)" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"></button>
+            <button class="story-bg-opt" data-bg="linear-gradient(135deg,#1c1c27,#252535)" style="background:linear-gradient(135deg,#1c1c27,#252535)"></button>
+          </div>
+        </div>
+        <div id="story-image-input-wrap" class="hidden">
+          <input type="text" id="story-image-url" placeholder="Paste image URL…" style="width:100%;background:var(--bg-3);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-size:14px;outline:none;font-family:var(--font-body)" />
+        </div>
+        <div id="story-video-input-wrap" class="hidden">
+          <label class="video-upload-label" for="story-video-file">
+            🎬 <span>Choose video file</span>
+            <span class="video-upload-hint">MP4, WebM up to 50MB</span>
+          </label>
+          <input type="file" id="story-video-file" accept="video/*" style="display:none" />
+          <div id="story-video-preview-wrap" class="hidden" style="margin-top:8px">
+            <video id="story-video-preview" controls style="width:100%;border-radius:8px;max-height:160px"></video>
+          </div>
+        </div>
+        <div id="story-creator-error" class="form-error hidden"></div>
+        <button class="btn btn-primary" id="post-story-btn">Share Story</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="reel-upload-modal" class="modal hidden">
+    <div class="modal-overlay" id="reel-modal-overlay"></div>
+    <div class="modal-box" style="max-width:500px">
+      <div class="modal-header">
+        <h3>Upload Reel</h3>
+        <button class="modal-close" id="reel-modal-close">✕</button>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div class="video-drop-zone" id="video-drop-zone">
+          <div class="vdz-inner" id="vdz-inner">
+            <div style="font-size:40px">🎬</div>
+            <p>Drag &amp; drop your video here</p>
+            <span>or</span>
+            <label class="btn btn-outline btn-sm" for="reel-video-file">Browse file</label>
+            <input type="file" id="reel-video-file" accept="video/mp4,video/webm,video/mov,video/*" style="display:none" />
+            <p class="vdz-hint">MP4, WebM, MOV · Max 100MB · Up to 60 seconds</p>
+          </div>
+          <video id="reel-video-preview" class="hidden" controls style="width:100%;border-radius:8px;max-height:280px"></video>
+        </div>
+
+        <div id="reel-upload-progress" class="hidden">
+          <div class="upload-progress-bar">
+            <div class="upload-progress-fill" id="upload-progress-fill"></div>
+          </div>
+          <span class="upload-progress-label" id="upload-progress-label">Uploading…</span>
+        </div>
+
+        <div class="form-group">
+          <label>Caption</label>
+          <textarea id="reel-caption" placeholder="Write a caption… #tags @mentions" maxlength="300" style="width:100%;height:70px;background:var(--bg-3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-family:var(--font-body);font-size:14px;resize:none;outline:none"></textarea>
+        </div>
+
+        <div style="display:flex;gap:12px">
+          <div class="form-group" style="flex:1">
+            <label>Audio</label>
+            <select id="reel-audio" style="width:100%;background:var(--bg-3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none">
+              <option value="original">Original audio</option>
+              <option value="mute">No audio</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1">
+            <label>Visibility</label>
+            <select id="reel-visibility" style="width:100%;background:var(--bg-3);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none">
+              <option value="public">🌍 Public</option>
+              <option value="followers">👥 Followers</option>
+              <option value="private">🔒 Only me</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="reel-error" class="form-error hidden"></div>
+        <button class="btn btn-primary btn-full" id="reel-submit-btn" disabled>Share Reel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="comments-modal" class="modal hidden">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Comments</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div id="comments-list" class="comments-list"></div>
+      <div class="comment-compose">
+        <div class="comment-compose-avatar" id="comment-compose-avatar"></div>
+        <input type="text" id="comment-input" placeholder="Add a comment…" maxlength="300" />
+        <button class="btn btn-primary btn-sm" id="comment-submit">Post</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="post-detail-modal" class="modal hidden">
+    <div class="modal-overlay" id="post-detail-overlay"></div>
+    <div class="post-detail-box">
+      <button class="modal-close post-detail-close" id="post-detail-close">✕</button>
+      <div class="post-detail-img-wrap" id="post-detail-img-wrap"></div>
+      <div class="post-detail-side">
+        <div id="post-detail-header"></div>
+        <div id="post-detail-content-text" class="post-detail-text"></div>
+        <div id="post-detail-comments" class="post-detail-comments"></div>
+        <div id="post-detail-actions" class="post-detail-actions-bar"></div>
+        <div class="post-detail-compose">
+          <input type="text" id="post-detail-comment-input" placeholder="Add a comment…" maxlength="300" />
+          <button class="btn btn-primary btn-sm" id="post-detail-comment-submit">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="share-modal" class="modal hidden">
+    <div class="modal-overlay" id="share-modal-overlay"></div>
+    <div class="modal-box" style="max-width:380px">
+      <div class="modal-header">
+        <h3>Share Post</h3>
+        <button class="modal-close" id="share-modal-close">✕</button>
+      </div>
+      <div class="share-options" id="share-options"></div>
+    </div>
+  </div>
+
+  <div id="report-modal" class="modal hidden">
+    <div class="modal-overlay" id="report-modal-overlay"></div>
+    <div class="modal-box" style="max-width:360px">
+      <div class="modal-header">
+        <h3>Report Post</h3>
+        <button class="modal-close" id="report-modal-close">✕</button>
+      </div>
+      <div style="padding:20px">
+        <p style="color:var(--text-2);font-size:13px;margin-bottom:16px">Why are you reporting this post?</p>
+        <div class="report-options" id="report-options">
+          <button class="report-opt-btn">Spam</button>
+          <button class="report-opt-btn">Misinformation</button>
+          <button class="report-opt-btn">Hate speech</button>
+          <button class="report-opt-btn">Violence</button>
+          <button class="report-opt-btn">Nudity</button>
+          <button class="report-opt-btn">Harassment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="follow-list-modal" class="modal hidden">
+    <div class="modal-overlay" id="follow-list-overlay"></div>
+    <div class="modal-box" style="max-width:380px">
+      <div class="modal-header">
+        <h3 id="follow-list-title">Followers</h3>
+        <button class="modal-close" id="follow-list-close">✕</button>
+      </div>
+      <div id="follow-list-content" style="overflow-y:auto;max-height:400px"></div>
+    </div>
+  </div>
+
+  <div id="reactions-picker" class="reactions-picker hidden">
+    <button class="reaction-btn" data-reaction="❤️">❤️</button>
+    <button class="reaction-btn" data-reaction="🔥">🔥</button>
+    <button class="reaction-btn" data-reaction="😂">😂</button>
+    <button class="reaction-btn" data-reaction="😮">😮</button>
+    <button class="reaction-btn" data-reaction="😢">😢</button>
+    <button class="reaction-btn" data-reaction="👏">👏</button>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
